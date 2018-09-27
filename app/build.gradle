@@ -54,3 +54,24 @@ sceneform.asset('sampledata/models/palmTree/AlexandraPalmTree.obj',
         'default',
         'sampledata/models/palmTree/AlexandraPalmTree.sfa',
         'src/main/res/raw/palm_tree')
+
+sceneform.asset('sampledata/models/pineTree/model.obj',
+        'default',
+        'sampledata/models/pineTree/model.sfa',
+        'src/main/res/raw/pine_tree')
+
+
+sceneform.asset('sampledata/models/bananaTree/BananaTree.obj',
+        'default',
+        'sampledata/models/bananaTree/BananaTree.sfa',
+        'src/main/res/raw/banana_tree')
+
+sceneform.asset('sampledata/models/IvoryTree/IvoryCanePalmTree.obj',
+        'default',
+        'sampledata/models/IvoryTree/IvoryCanePalmTree.sfa',
+        'src/main/res/raw/ivory_tree')
+
+sceneform.asset('sampledata/models/SakuraTree/model.obj',
+        'default',
+        'sampledata/models/SakuraTree/model.sfa',
+        'src/main/res/raw/sakura_tree')
