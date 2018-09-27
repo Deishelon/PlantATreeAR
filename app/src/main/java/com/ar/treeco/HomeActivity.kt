@@ -2,9 +2,11 @@ package com.ar.treeco
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -25,19 +27,40 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.my_toolbar))
         supportActionBar?.title = "Plant a Tree - AR"
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        val adapter = TreeAdapter()
+
+        recyclerView.adapter = adapter
+
+        val arTreeList = ArrayList<ArTree>()
+
+        arTreeList.add(ArTree("Coffee tree", R.drawable.ar_preview_coffe, R.raw.tree))
+        arTreeList.add(ArTree("Palm tree", R.drawable.ar_preview_palm, R.raw.palm_tree))
+
+        adapter.updateList(arTreeList)
+
+        adapter.setOnItemClickListener(object : TreeAdapter.OnItemClickListener{
+            override fun onItemClick(view: View?, position: Int) {
+                val clickedData = adapter.runHistoryList[position]
+                createNewModelRender(clickedData.rendable)
+            }
+        })
+
         arFragment = supportFragmentManager.findFragmentById(R.id.ux_fragment) as ArFragment?
 
-        ModelRenderable.builder()
-                .setSource(this, R.raw.tree)
-                //.setSource(this, callable)
-                .build()
-                .thenAccept { renderable -> andyRenderable = renderable }
-                .exceptionally { throwable ->
-                    val toast = Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
-                    null
-                }
+//        ModelRenderable.builder()
+//                .setSource(this, R.raw.tree)
+//                //.setSource(this, callable)
+//                .build()
+//                .thenAccept { renderable -> andyRenderable = renderable }
+//                .exceptionally { throwable ->
+//                    val toast = Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG)
+//                    toast.setGravity(Gravity.CENTER, 0, 0)
+//                    toast.show()
+//                    null
+//                }
 
         arFragment?.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (andyRenderable != null) {
@@ -56,5 +79,19 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    fun createNewModelRender(modelID: Int) {
+        ModelRenderable.builder()
+                .setSource(this, modelID)
+                //.setSource(this, callable)
+                .build()
+                .thenAccept { renderable -> andyRenderable = renderable
+                    Toast.makeText(this, "Tree loaded", Toast.LENGTH_LONG).show()
+                }
+                .exceptionally { throwable ->
+                    Toast.makeText(this, "Unable to load tree renderable", Toast.LENGTH_LONG).show()
+                    null
+                }
     }
 }
