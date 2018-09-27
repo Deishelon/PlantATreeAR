@@ -50,18 +50,6 @@ class HomeActivity : AppCompatActivity() {
 
         arFragment = supportFragmentManager.findFragmentById(R.id.ux_fragment) as ArFragment?
 
-//        ModelRenderable.builder()
-//                .setSource(this, R.raw.tree)
-//                //.setSource(this, callable)
-//                .build()
-//                .thenAccept { renderable -> andyRenderable = renderable }
-//                .exceptionally { throwable ->
-//                    val toast = Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG)
-//                    toast.setGravity(Gravity.CENTER, 0, 0)
-//                    toast.show()
-//                    null
-//                }
-
         arFragment?.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (andyRenderable != null) {
 
