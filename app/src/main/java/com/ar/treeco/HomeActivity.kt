@@ -25,22 +25,18 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
-        supportActionBar?.title = "Plant a Tree - AR"
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        supportActionBar?.title = "Plant a Tree - AR"
+        arFragment = supportFragmentManager.findFragmentById(R.id.ux_fragment) as ArFragment?
 
         val adapter = TreeAdapter()
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
 
-        val arTreeList = ArrayList<ArTree>()
 
-        arTreeList.add(ArTree("Coffee tree", R.drawable.ar_preview_coffe, R.raw.tree))
-        arTreeList.add(ArTree("Palm tree", R.drawable.ar_preview_palm, R.raw.palm_tree))
-
-        adapter.updateList(arTreeList)
-
+        adapter.updateList(getArTreeData())
         adapter.setOnItemClickListener(object : TreeAdapter.OnItemClickListener{
             override fun onItemClick(view: View?, position: Int) {
                 val clickedData = adapter.runHistoryList[position]
@@ -48,7 +44,6 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-        arFragment = supportFragmentManager.findFragmentById(R.id.ux_fragment) as ArFragment?
 
         arFragment?.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (andyRenderable != null) {
@@ -72,7 +67,6 @@ class HomeActivity : AppCompatActivity() {
     fun createNewModelRender(modelID: Int) {
         ModelRenderable.builder()
                 .setSource(this, modelID)
-                //.setSource(this, callable)
                 .build()
                 .thenAccept { renderable -> andyRenderable = renderable
                     Toast.makeText(this, "Tree loaded", Toast.LENGTH_LONG).show()
