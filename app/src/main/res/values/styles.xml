@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="HeaderBar">
+        <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="ActionBarThemeOverlay" parent="">
+        <!--<item name="android:textColorPrimary">#fff</item>-->
+        <!--Left icon color-->
+        <item name="colorControlNormal">#000000</item>
+        <!--Left icon hightlight color-->
+        <item name="colorControlHighlight">#3fff</item>
+    </style>
+
+    <style name="ActionBarPopupThemeOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -15,7 +15,7 @@
         android:layout_height="55dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[0]" />
+        tools:srcCompat="@drawable/ic_ar" />
 
     <TextView
         android:id="@+id/textView"

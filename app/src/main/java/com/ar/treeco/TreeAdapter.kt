@@ -36,7 +36,7 @@ class TreeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         // Show image + Tree name
 
         holder.textView?.text = aTree.name
-        Picasso.get().load(aTree.image).fit().into(holder.image)
+        Picasso.get().load(aTree.image).placeholder(R.drawable.ic_ar).fit().into(holder.image)
 
         updateSelectedIndicator(historyPreviewHolder)
     }
