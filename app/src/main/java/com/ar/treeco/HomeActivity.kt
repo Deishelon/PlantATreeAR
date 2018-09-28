@@ -14,6 +14,9 @@ import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
+import android.content.Intent
+import android.view.MenuItem
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -27,6 +30,11 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
         supportActionBar?.title = "Plant a Tree - AR"
+
+        if (intent.hasCategory("tree_co")){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+
         arFragment = supportFragmentManager.findFragmentById(R.id.ux_fragment) as ArFragment?
 
         val adapter = TreeAdapter()
@@ -75,5 +83,16 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this, "Unable to load tree renderable", Toast.LENGTH_LONG).show()
                     null
                 }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
