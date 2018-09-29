@@ -1,3 +1,3 @@
 # Plant a Tree - AR
 
-![](https://github.com/Deishelon/PlantATreeAR/raw/master/tree.png)
+![](https://raw.githubusercontent.com/Deishelon/PlantATreeAR/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png)
