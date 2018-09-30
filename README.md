@@ -4,3 +4,5 @@
 
 ## Demo
 [![](http://img.youtube.com/vi/UWjEKZ1K6pc/0.jpg)](http://www.youtube.com/watch?v=UWjEKZ1K6pc "Demo")
+
+![](https://huaweitheme.app/plant_ar_video.gif)
